@@ -40,6 +40,7 @@ export class LoginPage implements OnInit {
 
   login(){
     this.loginCompleto(this.usuarioRecuperado.controls.usuario.value,this.usuarioRecuperado.controls.pass.value);
+    this.route.navigate(['/sesion-inicada']);
   };
 
   goHome(){

@@ -23,7 +23,11 @@ const routes: Routes = [
   {
     path: 'forgot-p',
     loadChildren: () => import('./pages/forgot-p/forgot-p.module').then( m => m.ForgotPPageModule)
+  },  {
+    path: 'sesion-inicada',
+    loadChildren: () => import('./pages/sesion-inicada/sesion-inicada.module').then( m => m.SesionInicadaPageModule)
   },
+
 
 ];
 
