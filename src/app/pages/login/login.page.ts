@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
       console.log("this.usuarioRecuperado.controls.usuario.value",this.usuarioRecuperado.controls.usuario.value)
       if(this.users[i].usuario == usuarioIngresado && this.users[i].pass == passIngresada){
         console.log("SESION INICIADA")
+        localStorage.setItem('usuariotemp', JSON.stringify(usuarioIngresado))
         return true;
       }
     }

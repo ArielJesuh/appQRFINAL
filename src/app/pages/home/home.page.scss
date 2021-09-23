@@ -38,10 +38,12 @@
 .forgotP{
   display: flex;
   justify-content: center;
+  color: black;
   
 }
 
-section:not(.full-width),
-.full-width > header {
-  padding: 0 10px;
+.botones{
+  display:wrap;
+  justify-content: center;
+  transform: translateY(100%);
 }

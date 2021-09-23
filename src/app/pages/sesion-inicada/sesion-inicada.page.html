@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sesionInicada</ion-title>
+    <h1 class="titulo">Bienvenido {{this.users}}</h1>
   </ion-toolbar>
 </ion-header>
 
@@ -16,9 +16,9 @@
 
  
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" (click)="goHome()">
     <ion-fab-button>
-      <ion-icon color="light"  name="chevron-back-circle" (click)="goHome()"></ion-icon>
+      <ion-icon color="light"  name="chevron-back-circle" ></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
