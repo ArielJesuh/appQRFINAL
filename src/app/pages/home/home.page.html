@@ -1,0 +1,18 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      RegistrAPP DuocUC
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="titulo">Bienvenido</div>
+  <div class="contenido">
+    <ion-button expand="full" color="primary" (click)="goLogin()">Iniciar Sesion</ion-button>
+    <ion-button expand="full" color="secondary" (click)="goRegister()">Registrarse</ion-button>
+    <ion-label class="forgotP" (click)="goForgot()">Olvidaste tu contraseña.</ion-label>
+
+  </div>
+</ion-content>
