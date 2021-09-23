@@ -66,4 +66,9 @@ export class RegisterPage implements OnInit {
     this.route.navigate(['/forgot-p']);
   }
 
+  goHome(){
+    this.route.navigate(['/home']);
+  }
+
+
 }

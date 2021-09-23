@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-p',
@@ -9,7 +10,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class ForgotPPage implements OnInit {
 
-  constructor(public alertCtrl: AlertController) { }
+  constructor(public alertCtrl: AlertController,private route: Router) { }
 
   ngOnInit() {
   }
@@ -86,6 +87,10 @@ export class ForgotPPage implements OnInit {
       buttons: ['Aceptar']
     });
     await alert.present();
+  }
+
+  goHome(){
+    this.route.navigate(['/home']);
   }
 
 

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
   }
@@ -41,5 +41,9 @@ export class LoginPage implements OnInit {
   login(){
     this.loginCompleto(this.usuarioRecuperado.controls.usuario.value,this.usuarioRecuperado.controls.pass.value);
   };
+
+  goHome(){
+    this.route.navigate(['/home']);
+  }
 
 }
