@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registrarse</ion-title>
+    <h1 class="titulo">Registrarse</h1>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +20,7 @@
         </ion-item>
         <ion-item class = "separacion" color="tertiary">
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="text" formControlName="pass"></ion-input>
+          <ion-input required = "true" type="password" formControlName="pass" ></ion-input>
         </ion-item>
         <ion-button size="large" color="secondary" (click)="registrar()">Registrarse</ion-button>
       </div>

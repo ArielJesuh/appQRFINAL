@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -8,18 +10,18 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(public alertCtrl: AlertController,private route: Router) { }
 
   ngOnInit() {
   }
 
   users = JSON.parse(localStorage.getItem('data'));
-  usuario = new FormControl('');
-  pass = new FormControl('');
+  usuario = new FormControl('',Validators.required);
+  pass = new FormControl('',Validators.required);
 
   usuarioRecuperado = new FormGroup({
-    usuario: new FormControl(''),
-    pass: new FormControl('')
+    usuario: new FormControl('',Validators.required),
+    pass: new FormControl('',Validators.required)
   })
   perso: any;
 
@@ -36,22 +38,55 @@ export class RegisterPage implements OnInit {
     localStorage.setItem('data', JSON.stringify(data));
   }
 
+  async ingresaUsuario() {
+    const alert = await this.alertCtrl.create({
+      header: 'Error al registrar.',
+      subHeader: 'Ingresa un usuario valido.',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+
   revisarUsuario(nombre: string){
-    console.log(this.users);
+    //SI NO HAY USUARIOS SE PUEDE REGISTRAR
+    if(this.usuarioRecuperado.controls.usuario.value != ""){
+
+    }
     if(this.users.length == 0){
       return true;
     }
+    //SI HAY USUARIOS
     for (var i = 0; i < this.users.length; i++) { 
-      console.log("Comparamos ")
-      console.log("this.users[",i,"]"," = ",this.users[i].usuario);
-      console.log("y","nombre: string de funcion revisarUsuario = ",nombre);
-      if (this.users[i].usuario === nombre) {
+      //SI EXISTE UN USUARIO YA REGISTRADO
+      if (this.users[i].usuario === nombre ) {
         return false;
       }
     }
+    //Si el formulario esta completo
+    if(this.usuarioRecuperado.valid){
     return true;
   }
-
+    
+  }
+  // ALERTA PARA INFORMAR QUE EL USUARIO YA ESTA REGISTRADO
+  async usuarioExisteVentana() {
+    const alert = await this.alertCtrl.create({
+      header: 'Error al registrar.',
+      subHeader: 'El usuario ya existe.',
+      message: 'Por favor ingresa datos validos.',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+  async ingresaContrasenia() {
+    const alert = await this.alertCtrl.create({
+      header: 'Error al registrar.',
+      subHeader: 'Ingresa una contraseña valida.',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+      // FUNCION PARA GUARDAR USUARIO
   registrar() {
     if(this.revisarUsuario(this.usuarioRecuperado.controls.usuario.value)){
       console.log("Intentando registrar usuario.");
@@ -59,6 +94,13 @@ export class RegisterPage implements OnInit {
     }
     else{
       console.log("El usuario ya existe.");
+      if(this.usuarioRecuperado.valid){
+        this.usuarioExisteVentana();
+        return true;
+      }
+      else{
+        this.ingresaContrasenia();
+      }
     }
   }
 
@@ -69,6 +111,7 @@ export class RegisterPage implements OnInit {
   goHome(){
     this.route.navigate(['/home']);
   }
+
 
 
 }

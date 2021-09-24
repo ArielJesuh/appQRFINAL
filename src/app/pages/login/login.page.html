@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>    
-    <ion-title>login</ion-title>    
+    <h1 class="titulo">Ingresa tu nombre y contraseña.</h1>
   </ion-toolbar>
 </ion-header>
 
@@ -19,7 +19,7 @@
     </ion-item>
     <ion-item class = "separacion" color="tertiary">
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="text" formControlName="pass"></ion-input>
+      <ion-input type="text" type="password" formControlName="pass"></ion-input>
     </ion-item>
     <ion-button size="large" color="primary" (click)="login()">Iniciar Sesion</ion-button>
   </div>

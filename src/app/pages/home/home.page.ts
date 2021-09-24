@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   constructor(private route: Router) { }
-
+  
+  ngOnInit() {
+  }
 
   //Creacion de Nombre y Contraseña
   elNombre = new FormControl('');
@@ -21,13 +23,14 @@ export class HomePage {
     elNombre: new FormControl(''),
     laPass: new FormControl('')
   });
+  users = new Array();
 
   //AUXILIAR
   perso: any;
 
   // Arreglo que guarda los Usuarios(PERSONAS)
-  users = new Array();
 
+  
   //MOSTRAR EN CONSOLA LOS USUARIOS
   cambiarDatos() {
     console.log(this.users);
@@ -78,8 +81,19 @@ export class HomePage {
       
     }
   }
-
+  usersFinal: any;
+  //Funcion que crea un data como [] si es que no existe uno.
   goLogin(){
+    this.usersFinal = JSON.parse(localStorage.getItem('data'));
+    if(this.usersFinal != null) {
+      localStorage.setItem('data', JSON.stringify(this.usersFinal));
+    } else {
+      this.usersFinal = new Array();
+      localStorage.setItem('data', JSON.stringify(this.usersFinal));
+
+    }
+    
+
     this.route.navigate(['/login']);
   }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup ,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -8,20 +10,39 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, public alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
 
   users = JSON.parse(localStorage.getItem('data'));
   usuario = new FormControl('');
-  pass = new FormControl('');
+  pass = new FormControl('',Validators.required);
 
   usuarioRecuperado = new FormGroup({
     usuario: new FormControl(''),
-    pass: new FormControl('')
+    pass: new FormControl('',Validators.required)
   })
   perso: any;
+
+
+  async usuarioNoExiste() {
+    const alert = await this.alertCtrl.create({
+      header: 'Error al Iniciar sesion.',
+      subHeader: 'El usuario no existe.',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+
+  async contraseniaNoExiste() {
+    const alert = await this.alertCtrl.create({
+      header: 'Error al Iniciar sesion.',
+      subHeader: 'El usuario es obligatorio.',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
 
 
   
@@ -34,14 +55,22 @@ export class LoginPage implements OnInit {
         localStorage.setItem('usuariotemp', JSON.stringify(usuarioIngresado))
         return true;
       }
+      if(this.users[i].pass != passIngresada){
+        console.log("Contraseña invalida!")
+        this.contraseniaNoExiste();
+        return false;
+      }
     }
     console.log("Usuario no encontrado.")
+    this.usuarioNoExiste();
     return false;
   };
 
   login(){
-    this.loginCompleto(this.usuarioRecuperado.controls.usuario.value,this.usuarioRecuperado.controls.pass.value);
-    this.route.navigate(['/sesion-inicada']);
+    if(this.loginCompleto(this.usuarioRecuperado.controls.usuario.value,this.usuarioRecuperado.controls.pass.value)){
+      this.route.navigate(['/sesion-inicada']);
+
+    };
   };
 
   goHome(){
