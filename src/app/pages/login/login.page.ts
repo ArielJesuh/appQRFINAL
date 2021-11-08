@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
+import { AlumnoI } from 'src/app/model/usuario';
+import { ApiService } from 'src/app/api.service';
+import { NavController, LoadingController } from '@ionic/angular';
 import { FormControl, FormGroup ,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -10,12 +14,19 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private route: Router, public alertCtrl: AlertController) { }
+  constructor(
+    private api : ApiService,
+    private loadingCtrl : LoadingController,
+    private navCtrl : NavController,
+    private route: Router, public alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
 
+
   users = JSON.parse(localStorage.getItem('data'));
+  user : string;
+  passwd : string;
   usuario = new FormControl('');
   pass = new FormControl('',Validators.required);
 
@@ -72,6 +83,13 @@ export class LoginPage implements OnInit {
 
     };
   };
+
+  validar(){
+    console.log(this.user + " " +this.passwd);
+    this.api.getTodo().subscribe(resp=>{
+      console.log(resp);
+    })
+  }
 
   goHome(){
     this.route.navigate(['/home']);

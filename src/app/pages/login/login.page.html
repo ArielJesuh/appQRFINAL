@@ -15,14 +15,19 @@
     <div class="input">
     <ion-item class = "separacion" color="tertiary">
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" formControlName="usuario"></ion-input>
+      <ion-input type="text" 
+        [(ngModel)]= "user"
+      formControlName="usuario"></ion-input>
     </ion-item>
     <ion-item class = "separacion" color="tertiary">
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="text" type="password" formControlName="pass"></ion-input>
+      <ion-input type="text" type="password" 
+        [(ngModel)]= "passwd"
+      formControlName="pass"></ion-input>
     </ion-item>
-    <ion-button size="large" color="primary" (click)="login()">Iniciar Sesion</ion-button>
+    <ion-button size="large" color="primary" (click)="validar()">Iniciar Sesion</ion-button>
   </div>
 </div>
+    
   </form>
 </ion-content>

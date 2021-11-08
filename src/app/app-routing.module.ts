@@ -28,10 +28,9 @@ const routes: Routes = [
     path: 'sesion-inicada',
     loadChildren: () => import('./pages/sesion-inicada/sesion-inicada.module').then( m => m.SesionInicadaPageModule)
   },
-  {
-    path: 'detalle/:id',
-    loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
-  },
+  
+  
+  
 
 
 ];

@@ -97,9 +97,9 @@ export class HomePage {
     this.route.navigate(['/login']);
   }
 
-  goRegister(){
+  /*goRegister(){
     this.route.navigate(['/register']);
-  }
+  }*/
 
   goForgot(){
     this.route.navigate(['/forgot-p']);
