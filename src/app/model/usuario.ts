@@ -2,7 +2,7 @@ export interface AlumnoI{
     id?:String;
     usuario : String;
     apellidos : String;
-    passwd : String;
+    password : String;
     tipo : Number;
 
 }

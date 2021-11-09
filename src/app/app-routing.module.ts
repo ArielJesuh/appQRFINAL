@@ -28,6 +28,14 @@ const routes: Routes = [
     path: 'sesion-inicada',
     loadChildren: () => import('./pages/sesion-inicada/sesion-inicada.module').then( m => m.SesionInicadaPageModule)
   },
+  {
+    path :'alumno',
+    loadChildren: () => import('./pages/alumno/alumno.module').then (m => m.AlumnoPageModule)
+  },
+  {
+    path:'profesor',
+    loadChildren: () => import ('./pages/profesor/profesor.module').then (m => m.ProfesorPageModule)
+  },
   
   
   
