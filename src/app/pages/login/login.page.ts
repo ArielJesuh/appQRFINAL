@@ -15,7 +15,7 @@ import { AlertController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   constructor(
-    private api: ApiService,
+    private api: ApiService, 
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
     private route: Router, public alertCtrl: AlertController) { }
